@@ -12,10 +12,8 @@ with open("scaler.pkl", "rb") as scaler_file:
     scaler = pickle.load(scaler_file)
 
 # Title of the app
-st.title(":red[social media prediction]")
+st.title(":red[Insurance Fraud Detetion]")
 
-# Description of the app
-st.write("This is a social media prediction app.")
 
 # User inputs for prediction
 months_as_customer = st.number_input("Months as Customer", min_value=0, max_value=100, value=25)
@@ -56,7 +54,11 @@ if st.button("Make Prediction"):
         prediction = prediction.tolist()
 
         # Display the prediction result
-        st.write("Prediction:", prediction[0])
+        if prediction[0] == 0 :
+            final_prediction = 'No'
+        else:
+            final_prediction = 'Yes'
+        st.write("Prediction:", final_prediction)
         st.balloons()
     except Exception as e:
         st.error(f"Error in making prediction: {e}")
